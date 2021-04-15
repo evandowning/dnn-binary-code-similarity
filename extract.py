@@ -38,7 +38,7 @@ def dump_acfg_binja(fn,output):
     bv = binja.BinaryViewType.get_view_of_file(fn)
 
     sys.stdout.write('{0} Importing BNDB file took {1} seconds\n'.format(fn,time.time()-start))
-    time_previous = time.time()
+    start = time.time()
 
     # For each function
     for func in bv.functions:
@@ -147,9 +147,14 @@ def dump_acfg_binja(fn,output):
         # Append function features to data for binary
         data.append(func_data)
 
+    sys.stdout.write('{0} Extracting features took {1} seconds\n'.format(fn,time.time()-start))
+    start = time.time()
+
     # Dump data into JSON file
     with open(output,'w') as fw:
         fw.write('\n'.join([json.dumps(d) for d in data]))
+
+    sys.stdout.write('{0} Dumping features took {1} seconds\n'.format(fn,time.time()-start))
 
 def _main():
     # Parse arguments
