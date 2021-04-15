@@ -3,26 +3,32 @@ This repo provides an implementation of the Gemini network for binary code simil
 
 ## Prepration and Data
 Unzip the data by running:
-```bash
-unzip data.zip
+```
+$ unzip data.zip
 ```
 
-The network is written using Tensorflow 1.4 in Python 2.7. You can install the dependencies by running:
-```bash
-pip install -r requirements.txt
+Create environment
+```
+$ mkvirtualenv gemini --python=python3
+(gemini) $ pip install -r requirements.txt
+```
+
+## Extract features
+```
+$ python extract.py binja --bndb binary.bndb --output binary.json
 ```
 
 ## Model Implementation
 The model is implemented in `graphnnSiamese.py`.
 
 Run the following code to train the model:
-```bash
-python train.py
+```
+$ python train.py
 ```
 or run `python train.py -h` to check the optional arguments.
 
 After training, run the following code to evaluate the model:
-```bash
-python eval.py
+```
+$ python eval.py
 ```
 or run `python eval.py -h` to check the optional arguments.

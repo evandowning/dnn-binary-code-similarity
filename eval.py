@@ -1,6 +1,5 @@
 import tensorflow as tf
-print tf.__version__
-#import matplotlib.pyplot as plt
+print(tf.__version__)
 import numpy as np
 from datetime import datetime
 from graphnnSiamese import graphnn
@@ -75,7 +74,7 @@ if __name__ == '__main__':
      
 
     Gs, classes = read_graph(F_NAME, FUNC_NAME_DICT, NODE_FEATURE_DIM)
-    print "{} graphs, {} functions".format(len(Gs), len(classes))
+    print("{} graphs, {} functions".format(len(Gs), len(classes)))
 
 
     if os.path.isfile('data/class_perm.npy'):
@@ -90,12 +89,12 @@ if __name__ == '__main__':
     Gs_train, classes_train, Gs_dev, classes_dev, Gs_test, classes_test =\
             partition_data(Gs,classes,[0.8,0.1,0.1],perm)
 
-    print "Train: {} graphs, {} functions".format(
-            len(Gs_train), len(classes_train))
-    print "Dev: {} graphs, {} functions".format(
-            len(Gs_dev), len(classes_dev))
-    print "Test: {} graphs, {} functions".format(
-            len(Gs_test), len(classes_test))
+    print("Train: {} graphs, {} functions".format(
+            len(Gs_train), len(classes_train)))
+    print("Dev: {} graphs, {} functions".format(
+            len(Gs_dev), len(classes_dev)))
+    print("Test: {} graphs, {} functions".format(
+            len(Gs_test), len(classes_test)))
 
     # Fix the pairs for validation and testing
     if os.path.isfile('data/valid.json'):

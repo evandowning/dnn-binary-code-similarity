@@ -1,5 +1,5 @@
-import tensorflow as tf
-#import matplotlib.pyplot as plt
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import numpy as np
 import datetime
 from sklearn.metrics import roc_auc_score
@@ -51,14 +51,14 @@ class graphnn(object):
 
         tf.reset_default_graph()
         with tf.device(device):
-            Wnode = tf.Variable(tf.truncated_normal(
+            Wnode = tf.Variable(tf.random.truncated_normal(
                 shape = [N_x, N_embed], stddev = 0.1, dtype = Dtype))
             Wembed = []
             for i in range(depth_embed):
-                Wembed.append(tf.Variable(tf.truncated_normal(
+                Wembed.append(tf.Variable(tf.random.truncated_normal(
                     shape = [N_embed, N_embed], stddev = 0.1, dtype = Dtype)))
 
-            W_output = tf.Variable(tf.truncated_normal(
+            W_output = tf.Variable(tf.random.truncated_normal(
                 shape = [N_embed, N_o], stddev = 0.1, dtype = Dtype))
             b_output = tf.Variable(tf.constant(0, shape = [N_o], dtype = Dtype))
             
@@ -94,7 +94,7 @@ class graphnn(object):
             self.optimizer = optimizer
     
     def say(self, string):
-        print string
+        print(string)
         if self.log_file != None:
             self.log_file.write(string+'\n')
     
